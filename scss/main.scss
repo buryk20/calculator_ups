@@ -1,0 +1,56 @@
+@import "_styleForBanner";
+@import "_normalize";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+// Переменные
+
+$fontRobotoReg: "Roboto", sans-serif;
+$mainColor: #f5821f;
+
+// Миксины
+
+@mixin btn {
+  padding: 8px 18px;
+  color: #ffffff;
+  background-color: $mainColor;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.text-under-banner-calc {
+  max-width: 1116px;
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-family: $fontRobotoReg;
+}
+
+.main-cont-calc {
+  max-width: 1440px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.line-calc {
+  margin-bottom: 40px;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.selection-ups-calc {
+  font-family: $fontRobotoReg;
+  &__btn {
+    @include btn;
+  }
+  &__text {
+    margin-right: 60px;
+  }
+  &__wrp {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+}
