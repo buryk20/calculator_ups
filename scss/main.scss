@@ -101,4 +101,38 @@
     display: inline-flex;
     flex-direction: column-reverse;
   }
+  @at-root {
+    .ups-calc-data {
+      padding-left: 0;
+      &__data-input {
+        max-width: 187px;
+        @include boxInput;
+      }
+      &__data-wrp-text{
+        position: relative;
+      }
+      &__data-text {
+        font-size: 16px;
+        font-weight: 600;
+      }
+      &__data-icon {
+        padding-left: 7px;
+        cursor: pointer;
+      }
+      &__wrp-text {
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-flex;
+      }
+      &__pos-cont {
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      &__wrp {
+        display: flex;
+      }
+    }
+  }
+  
 }
