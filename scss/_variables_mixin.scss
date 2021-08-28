@@ -1,0 +1,14 @@
+// Переменные
+
+$fontRobotoReg: "Roboto", sans-serif;
+$mainColor: #f5821f;
+
+// Миксины
+
+@mixin btn {
+  padding: 8px 18px;
+  color: #ffffff;
+  background-color: $mainColor;
+  border-radius: 8px;
+  cursor: pointer;
+}

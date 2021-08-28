@@ -19,15 +19,21 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: absolute;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   z-index: 2;
 }
 
 .top-banner-br__text {
   max-width: 680px;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-size: 48px;
   font-weight: 600;
@@ -76,7 +82,8 @@ body {
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border: 0 none;
   background-color: transparent;
   scroll-behavior: smooth;
@@ -155,6 +162,7 @@ select {
 input,
 textarea {
   outline: none;
+  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
 
@@ -165,9 +173,12 @@ label {
 /* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
@@ -199,6 +210,16 @@ label {
   font-family: "Roboto", sans-serif;
 }
 
+.selection-ups-calc__heading-wrp {
+  margin-bottom: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .selection-ups-calc__btn {
   padding: 8px 18px;
   color: #ffffff;
@@ -212,7 +233,88 @@ label {
 }
 
 .selection-ups-calc__wrp {
-  display: flex;
-  align-items: center;
   margin-bottom: 40px;
 }
+
+.selection-ups-calc-act__cust-radio {
+  font-size: 16px;
+}
+
+.selection-ups-calc-act__cust-radio + .selection-ups-calc-act__cust-radio {
+  margin-bottom: 20px;
+}
+
+.selection-ups-calc-act__cust-radio input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.selection-ups-calc-act__cust-radio span {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.selection-ups-calc-act__cust-radio span::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  border: 1px solid #adb5bd;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+
+.selection-ups-calc-act__cust-radio input:not(:disabled):not(:checked) + span:hover::before {
+  border-color: #f5821f;
+}
+
+.selection-ups-calc-act__cust-radio input:not(:disabled):active + span::before {
+  background-color: #f5821f;
+  border-color: #f5821f;
+}
+
+.selection-ups-calc-act__cust-radio input:focus + span::before {
+  -webkit-box-shadow: 0 0 0 0.2rem #f5821f91;
+          box-shadow: 0 0 0 0.2rem #f5821f91;
+}
+
+.selection-ups-calc-act__cust-radio input:focus:not(:checked) + span::before {
+  border-color: #f5821f91;
+}
+
+.selection-ups-calc-act__cust-radio input:checked + span::before {
+  background: #f5821f;
+  background: radial-gradient(circle, #f5821f 40%, white 60%);
+}
+
+.selection-ups-calc-act__cust-radio input:disabled + span::before {
+  background-color: #e9ecef;
+}
+
+.selection-ups-calc-act__check {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+/*# sourceMappingURL=main.css.map */
