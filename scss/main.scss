@@ -42,11 +42,9 @@
   &__wrp {
     margin-bottom: 40px;
   }
-  
 }
 
 .selection-ups-calc-act {
-  
   &__cust-radio {
     font-size: 16px;
     & + & {
@@ -63,7 +61,7 @@
       user-select: none;
     }
     span::before {
-      content: '';
+      content: "";
       display: inline-block;
       width: 1em;
       height: 1em;
@@ -76,24 +74,28 @@
       background-position: center center;
       background-size: 50% 50%;
     }
-    input:not(:disabled):not(:checked)+span:hover::before {
+    input:not(:disabled):not(:checked) + span:hover::before {
       border-color: #f5821f;
     }
-    input:not(:disabled):active+span::before {
+    input:not(:disabled):active + span::before {
       background-color: #f5821f;
       border-color: #f5821f;
     }
-    input:focus+span::before {
+    input:focus + span::before {
       box-shadow: 0 0 0 0.2rem #f5821f91;
     }
-    input:focus:not(:checked)+span::before {
+    input:focus:not(:checked) + span::before {
       border-color: #f5821f91;
     }
-    input:checked+span::before {
-      background: rgb(245,130,31);
-      background: radial-gradient(circle, rgba(245,130,31,1) 40%, rgba(255,255,255,1) 60%);
+    input:checked + span::before {
+      background: rgb(245, 130, 31);
+      background: radial-gradient(
+        circle,
+        rgba(245, 130, 31, 1) 40%,
+        rgba(255, 255, 255, 1) 60%
+      );
     }
-    input:disabled+span::before {
+    input:disabled + span::before {
       background-color: #e9ecef;
     }
   }
@@ -108,7 +110,7 @@
         max-width: 187px;
         @include boxInput;
       }
-      &__data-wrp-text{
+      &__data-wrp-text {
         position: relative;
       }
       &__data-text {
@@ -118,11 +120,17 @@
       &__data-icon {
         padding-left: 7px;
         cursor: pointer;
+        &:hover {
+          &__prompt {
+            opacity: 1;
+          }
+        }
       }
       &__wrp-text {
         margin-bottom: 15px;
         position: relative;
         display: inline-flex;
+        align-items: center;
       }
       &__pos-cont {
         margin-right: 20px;
@@ -132,7 +140,30 @@
       &__wrp {
         display: flex;
       }
+      &__icon-wrp {
+        position: relative;
+      }
+      &__prompt {
+        width: 282px;
+        padding: 9px 6px;
+        position: absolute;
+        bottom: 30px;
+        left: -124px;
+        background-color: #f1f1f1;
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1;
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: -19px;
+          left: 50%;
+          transform: translate(-50%, 0);
+          border: 10px solid transparent;
+          border-top: 10px solid #f0f0f0;
+          transition: opacity 0.3s ease-in-out;
+        }
+      }
     }
   }
-  
 }
