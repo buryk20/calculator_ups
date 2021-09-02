@@ -19,3 +19,11 @@ $mainColor: #f5821f;
   font-size: 16px;
   padding: 12px 69px 8px 16px;
 } 
+
+@mixin dataPrompt {
+  width: 282px;
+  padding: 9px 6px;
+  background-color: #F1F1F1;
+  border-radius: 8px;
+  z-index: 1;
+}

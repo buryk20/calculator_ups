@@ -112,28 +112,51 @@
         position: relative;
       }
       &__data-text {
+        margin-right: 7px;
         font-size: 16px;
         font-weight: 600;
       }
       &__data-icon {
+        margin-right: 8px;
         position: relative;
-        padding-left: 7px;
-        cursor: pointer;
       }  
       &__icon-wrp {
         position: relative;
         display: inline-block;
+        cursor: pointer;
         &:hover::after {
+          opacity: 1;
+        }
+        &::after {
           content: attr(data-title);
+          @include dataPrompt;
           position: absolute;
-          top: 0;
-          left: 0;
+          bottom: 32px;
+          left: -124px;
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          opacity: 0;
+          bottom: 12px;
+          left: 8px;
+          transform: translate(-50%, 0);
+          border: 10px solid transparent;
+          border-top: 10px solid #f0f0f0;
+          transition: opacity 0.3s ease-in-out;
+          z-index: 2;
+        }
+        &:hover::before {
+          opacity: 1;
         }
       }
       &__wrp-text {
         margin-bottom: 15px;
         position: relative;
         display: inline-flex;
+        align-items: center;
       }
       &__pos-cont {
         margin-right: 20px;
@@ -142,6 +165,55 @@
       }
       &__wrp {
         display: flex;
+      }
+      &__switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 19px;
+      }
+      &__switch input {
+        display: none;
+      }
+      &__slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        &::before {
+          position: absolute;
+          content: "";
+          height: 15px;
+          width: 16px;
+          left: 4px;
+          bottom: 2px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+      }
+      &__slider, 
+      &__round {
+        border-radius: 28px;
+        &::before {
+          border-radius: 50%;
+        }
+      }
+      input:checked + &__slider {
+        background-color: #f5821f;
+      }
+      input:focus + &__slider {
+        box-shadow: 0 0 1px #f5821f;
+      }
+      input:checked + &__slider:before {
+        -webkit-transform: translateX(16px);
+        -ms-transform: translateX(16px);
+        transform: translateX(16px);
       }
     }
   }
