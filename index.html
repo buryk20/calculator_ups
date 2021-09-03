@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Калькулятор</title>
     <link rel="stylesheet" href="css/main.css" />
+    <script src="js/jquery-3.6.0.js"></script>
   </head>
   <body>
     <main>
@@ -39,10 +40,9 @@
                 Расчет емкости аккумуляторной батареи для источника
                 бесперебойного питания
               </h2>
-              <button class="selection-ups-calc__btn">Подбор ИБП</button>
             </div>
             <div class="selection-ups-calc-act__wrp">
-              <div class="selection-ups-calc-act__check">
+              <!-- <div class="selection-ups-calc-act__check">
                 <label class="selection-ups-calc-act__cust-radio">
                   <input type="checkbox" />
                   <span>Кислотные(AGM)</span>
@@ -51,26 +51,28 @@
                   <input type="checkbox" />
                   <span>ИБП линейно интерактивные</span>
                 </label>
-              </div>
+              </div> -->
               <div class="ups-calc-data">
                 <div class="ups-calc-data__wrp">
                   <div class="ups-calc-data__pos-cont">
                     <div class="ups-calc-data__wrp-text">
-                      <p class="ups-calc-data__data-text">Нагрузка, V:</p>
+                      <p class="ups-calc-data__data-text">Нагрузка, W:</p>
                       <div class="ups-calc-data__icon-wrp" data-title="Отлично справляются с обеспечением резервного питания систем видеонаблюдения, котлов отопления и другой техники" >
                         <img
-                          
                           class="ups-calc-data__data-icon"
                           src="icon/icon-i-calc.svg"
                           alt="i"
                         />
                       </div>
                     </div>
-                    <input class="ups-calc-data__data-input" type="text" />
+                    <div class="ups-calc-data__data-input-wrp">
+                      <input class="ups-calc-data__data-input" id="w" onkeyup="this.value = this.value.replace(/[^\d]/g,'')" type="text" />
+                      <span class="ups-calc-data__units">W</span>
+                    </div>  
                   </div>
                   <div class="ups-calc-data__pos-cont">
                     <div class="ups-calc-data__wrp-text">
-                      <p class="ups-calc-data__data-text">Нагрузка, V:</p>
+                      <p class="ups-calc-data__data-text">КПД инвертора:</p>
                       <div class="ups-calc-data__icon-wrp" data-title="Отлично справляются с обеспечением резервного питания систем видеонаблюдения, котлов отопления и другой техники">
                         <img
                           class="ups-calc-data__data-icon"
@@ -79,13 +81,96 @@
                         />
                       </div>
                       <label class="ups-calc-data__switch" >
-                        <input type="checkbox" />
+                        <input type="checkbox"
+                               onclick="checkFluency()"
+                               id="InverterEfficiencyPromt"checked/>
                         <span class="ups-calc-data__slider ups-calc-data__round"></span>
                       </label>  
                     </div>
-                    <input class="ups-calc-data__data-input" type="text" />
+                    <div class="ups-calc-data__data-input-wrp">
+                      <input class="ups-calc-data__data-input" 
+                            type="text" 
+                            id="InverterEfficiency"
+                            onkeyup="this.value = this.value.replace(/[^\d]/g,'')"
+                            />
+                      <span id="InverterEfficiencyColor" class="ups-calc-data__units">%</span>
+                    </div>  
+                  </div>
+                  <!-- Не удалять этот код, понадобится когда будем дорабатывать калькулятор -->
+                  <!-- <div class="ups-calc-data__pos-cont">
+                    <div class="ups-calc-data__wrp-text">
+                      <p class="ups-calc-data__data-text">Глубина разряда:</p>
+                      <div class="ups-calc-data__icon-wrp" data-title="Отлично справляются с обеспечением резервного питания систем видеонаблюдения, котлов отопления и другой техники">
+                        <img
+                          class="ups-calc-data__data-icon"
+                          src="icon/icon-i-calc.svg"
+                          alt="i"
+                        />
+                      </div>
+                      <label class="ups-calc-data__switch" >
+                        <input type="checkbox"
+                               onclick="dischargeDepth()"
+                               id="dischargeDepthPromt"checked/>
+                        <span class="ups-calc-data__slider ups-calc-data__round"></span>
+                      </label>  
+                    </div>
+                    <div class="ups-calc-data__data-input-wrp">
+                      <input class="ups-calc-data__data-input" 
+                            type="text" 
+                            id="dischargeDepth" 
+                            title="Используйте числовой формат" pattern="^[0-9]+$"
+                            onkeyup="this.value = this.value.replace(/[^\d]/g,'')"
+                            />
+                      <span id="dischargeDepthColor" class="ups-calc-data__units">W</span>
+                    </div>  
+                  </div> -->
+                  <div class="ups-calc-data__pos-cont">
+                    <div class="ups-calc-data__wrp-text">
+                      <p class="ups-calc-data__data-text">Время работы:</p>
+                      <div class="ups-calc-data__icon-wrp" data-title="Отлично справляются с обеспечением резервного питания систем видеонаблюдения, котлов отопления и другой техники">
+                        <img
+                          class="ups-calc-data__data-icon"
+                          src="icon/icon-i-calc.svg"
+                          alt="i"
+                        />
+                      </div>  
+                    </div>
+                    <div class="ups-calc-data__data-input-wrp">
+                      <input class="ups-calc-data__data-input" 
+                            type="text" 
+                            id="time"
+                            onkeyup="this.value = this.value.replace(/[^\d]/g,'')"
+                            />
+                      <span class="ups-calc-data__units">Ч</span>
+                    </div>  
+                  </div>
+                  <div class="ups-calc-data__pos-cont">
+                    <div class="ups-calc-data__wrp-text">
+                      <p class="ups-calc-data__data-text">Номинальное напряжение АКБ:</p>
+                      <div class="ups-calc-data__icon-wrp" data-title="Отлично справляются с обеспечением резервного питания систем видеонаблюдения, котлов отопления и другой техники">
+                        <img
+                          class="ups-calc-data__data-icon"
+                          src="icon/icon-i-calc.svg"
+                          alt="i"
+                        />
+                      </div>
+                    </div>
+                    <div class="ups-calc-data__data-input-wrp">
+                      <input class="ups-calc-data__data-input" 
+                            type="text" 
+                            id="v"
+                            onkeyup="this.value = this.value.replace(/[^\d]/g,'')"
+                            />
+                      <span class="ups-calc-data__units">V</span>
+                    </div>  
                   </div>
                 </div>
+              <button onclick="calculation()" class="selection-ups-calc__btn">Рассчитать</button>
+              <p class="ups-calc-data__results-text">Минимальная ёмкость АКБ:</p>
+              <div class="ups-calc-data__data-input-wrp">
+                <input class="ups-calc-data__data-input" id="results" type="text" value=""/>
+                <span class="ups-calc-data__units">Ah</span>
+              </div>  
               </div>
             </div>
           </div>
@@ -93,5 +178,6 @@
         </div>
       </article>
     </main>
+    <script src="js/main.js"></script>
   </body>
 </html>

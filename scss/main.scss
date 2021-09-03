@@ -34,6 +34,7 @@
     align-items: center;
   }
   &__btn {
+    margin-bottom: 20px;
     @include btn;
   }
   &__text {
@@ -112,7 +113,7 @@
         position: relative;
       }
       &__data-text {
-        margin-right: 7px;
+        margin-right: 6px;
         font-size: 16px;
         font-weight: 600;
       }
@@ -126,6 +127,7 @@
         cursor: pointer;
         &:hover::after {
           opacity: 1;
+          z-index: 1;
         }
         &::after {
           content: attr(data-title);
@@ -134,7 +136,7 @@
           bottom: 32px;
           left: -124px;
           opacity: 0;
-          transition: opacity 0.3s ease-in-out;;
+          transition: opacity 0.1s ease-in-out;
         }
         &::before {
           content: "";
@@ -145,11 +147,12 @@
           transform: translate(-50%, 0);
           border: 10px solid transparent;
           border-top: 10px solid #f0f0f0;
-          transition: opacity 0.3s ease-in-out;
-          z-index: 2;
+          transition: opacity 0.1s ease-in-out;
+          z-index: -1;
         }
         &:hover::before {
           opacity: 1;
+          z-index: 2;
         }
       }
       &__wrp-text {
@@ -159,17 +162,22 @@
         align-items: center;
       }
       &__pos-cont {
-        margin-right: 20px;
+        position: relative;
         display: flex;
         flex-direction: column;
       }
+      &__pos-cont + &__pos-cont {
+        margin-left: 20px;
+      }
       &__wrp {
+        margin-bottom: 40px;
         display: flex;
+        flex-wrap: wrap;
       }
       &__switch {
         position: relative;
         display: inline-block;
-        width: 40px;
+        width: 36px;
         height: 19px;
       }
       &__switch input {
@@ -190,7 +198,7 @@
           content: "";
           height: 15px;
           width: 16px;
-          left: 4px;
+          left: 2px;
           bottom: 2px;
           background-color: white;
           -webkit-transition: .4s;
@@ -214,6 +222,23 @@
         -webkit-transform: translateX(16px);
         -ms-transform: translateX(16px);
         transform: translateX(16px);
+      }
+      &__units {
+        padding: 10px 33px;
+        position: absolute;
+        background-color: #F1F1F1;
+        right: 1px;
+        bottom: 1px;
+        font-size: 16px;
+        border-radius: 8px;
+      }
+      &__data-input-wrp {
+        width: 187px;
+        position: relative;
+      }
+      &__results-text {
+        margin-bottom: 20px;
+        font-size: 16px;
       }
     }
   }
