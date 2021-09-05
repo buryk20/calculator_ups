@@ -2,9 +2,14 @@
 
 $fontRobotoReg: "Roboto", sans-serif;
 $mainColor: #f5821f;
-
+$inputAdaptive: 922px;
 // Миксины
 
+@mixin inputAdaptive {
+  @media (max-width: $inputAdaptive) {
+    @content;
+  }
+}
 @mixin btn {
   padding: 8px 18px;
   color: #ffffff;
@@ -15,16 +20,16 @@ $mainColor: #f5821f;
 }
 
 @mixin boxInput {
-  border: 1px solid #8A8A8A;
+  border: 1px solid #8a8a8a;
   border-radius: 8px;
   font-size: 16px;
   padding: 12px 69px 8px 16px;
-} 
+}
 
 @mixin dataPrompt {
   width: 282px;
   padding: 9px 6px;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   border-radius: 8px;
   z-index: -1;
 }

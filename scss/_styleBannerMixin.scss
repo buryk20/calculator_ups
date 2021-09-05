@@ -1,0 +1,18 @@
+$textPad: 1456px;
+$smScreenWidth: 1376px;
+$smallestScreenWidth: 1080px;
+$smScreenHeight: 720px;
+$bigMobileWidth: 960px;
+$mobileWidth: 680px;
+$mobileHeight: 600px;
+@mixin textPad {
+  @media (max-width: $textPad) {
+    @content;
+  }
+}
+
+@mixin mobil {
+  @media (max-width: $mobileWidth) {
+    @content;
+  }
+}

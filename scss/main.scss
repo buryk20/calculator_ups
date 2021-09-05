@@ -1,6 +1,7 @@
-@import "_styleForBanner";
 @import "_normalize";
 @import "_variables_mixin.scss";
+@import "_styleBannerMixin.scss";
+@import "_styleForBanner";
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .text-under-banner-calc {
@@ -12,6 +13,18 @@
   text-align: center;
   font-size: 18px;
   font-family: $fontRobotoReg;
+  @include textPad {
+    & {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+  @include mobil {
+    & {
+      margin-bottom: 20px;
+      padding-top: 0;
+    }
+  }
 }
 
 .main-cont-calc {
@@ -19,11 +32,23 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  @include textPad {
+    & {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
 }
 
 .line-calc {
   margin-bottom: 40px;
   border-bottom: 1px solid #c4c4c4;
+  @include textPad {
+    & {
+      margin-right: 26px;
+      margin-left: 26px;
+    }
+  }
 }
 
 .selection-ups-calc {
@@ -36,6 +61,16 @@
   &__btn {
     margin-bottom: 20px;
     @include btn;
+    &:focus {
+      box-shadow: 4px 3px 3px #f5821f8a;
+    }
+    @include inputAdaptive {
+      & {
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
   }
   &__text {
     margin-right: 60px;
@@ -43,202 +78,174 @@
   &__wrp {
     margin-bottom: 40px;
   }
-  
 }
-
-.selection-ups-calc-act {
-  
-  &__cust-radio {
+.ups-calc-data {
+  padding-left: 0;
+  &__data-input {
+    max-width: 187px;
+    @include boxInput;
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+  }
+  &__data-wrp-text {
+    position: relative;
+  }
+  &__data-text {
+    margin-right: 6px;
     font-size: 16px;
-    & + & {
-      margin-bottom: 20px;
+    font-weight: 600;
+  }
+  &__data-icon {
+    margin-right: 8px;
+    position: relative;
+  }
+  &__icon-wrp {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+
+    &:hover::after {
+      z-index: 1;
+      display: block;
     }
-    input {
+    &::after {
+      display: none;
+      content: attr(data-title);
+      @include dataPrompt;
       position: absolute;
-      z-index: -1;
+      bottom: 32px;
+      left: -124px;
+      // opacity: 0;
+      transition: opacity 0.1s ease-in-out;
+    }
+    &::before {
+      content: "";
+      position: absolute;
       opacity: 0;
+      bottom: 12px;
+      left: 8px;
+      transform: translate(-50%, 0);
+      border: 10px solid transparent;
+      border-top: 10px solid #f0f0f0;
+      transition: opacity 0.1s ease-in-out;
+      z-index: -1;
     }
-    span {
-      display: inline-flex;
-      align-items: center;
-      user-select: none;
-    }
-    span::before {
-      content: '';
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      flex-shrink: 0;
-      flex-grow: 0;
-      border: 1px solid #adb5bd;
-      border-radius: 50%;
-      margin-right: 0.5em;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 50% 50%;
-    }
-    input:not(:disabled):not(:checked)+span:hover::before {
-      border-color: #f5821f;
-    }
-    input:not(:disabled):active+span::before {
-      background-color: #f5821f;
-      border-color: #f5821f;
-    }
-    input:focus+span::before {
-      box-shadow: 0 0 0 0.2rem #f5821f91;
-    }
-    input:focus:not(:checked)+span::before {
-      border-color: #f5821f91;
-    }
-    input:checked+span::before {
-      background: rgb(245,130,31);
-      background: radial-gradient(circle, rgba(245,130,31,1) 40%, rgba(255,255,255,1) 60%);
-    }
-    input:disabled+span::before {
-      background-color: #e9ecef;
+    &:hover::before {
+      opacity: 1;
+      z-index: 2;
     }
   }
-  &__check {
+  &__wrp-text {
+    margin-bottom: 15px;
+    position: relative;
     display: inline-flex;
-    flex-direction: column-reverse;
+    align-items: center;
   }
-  @at-root {
-    .ups-calc-data {
-      padding-left: 0;
-      &__data-input {
-        max-width: 187px;
-        @include boxInput;
-      }
-      &__data-wrp-text{
-        position: relative;
-      }
-      &__data-text {
-        margin-right: 6px;
-        font-size: 16px;
-        font-weight: 600;
-      }
-      &__data-icon {
-        margin-right: 8px;
-        position: relative;
-      }  
-      &__icon-wrp {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        &:hover::after {
-          opacity: 1;
-          z-index: 1;
-        }
-        &::after {
-          content: attr(data-title);
-          @include dataPrompt;
-          position: absolute;
-          bottom: 32px;
-          left: -124px;
-          opacity: 0;
-          transition: opacity 0.1s ease-in-out;
-        }
-        &::before {
-          content: "";
-          position: absolute;
-          opacity: 0;
-          bottom: 12px;
-          left: 8px;
-          transform: translate(-50%, 0);
-          border: 10px solid transparent;
-          border-top: 10px solid #f0f0f0;
-          transition: opacity 0.1s ease-in-out;
-          z-index: -1;
-        }
-        &:hover::before {
-          opacity: 1;
-          z-index: 2;
-        }
-      }
-      &__wrp-text {
-        margin-bottom: 15px;
-        position: relative;
-        display: inline-flex;
+  &__pos-cont {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    @include inputAdaptive {
+      & {
+        max-width: 270px;
+        width: 100%;
         align-items: center;
       }
-      &__pos-cont {
-        position: relative;
-        display: flex;
-        flex-direction: column;
+    }
+  }
+  &__pos-cont + &__pos-cont {
+    margin-left: 20px;
+    @include inputAdaptive {
+      & {
+        margin-left: 0;
       }
-      &__pos-cont + &__pos-cont {
-        margin-left: 20px;
+    }
+  }
+  &__wrp {
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    @include inputAdaptive {
+      & {
+        justify-content: space-evenly;
       }
-      &__wrp {
-        margin-bottom: 40px;
-        display: flex;
-        flex-wrap: wrap;
+    }
+  }
+  &__switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 19px;
+  }
+  &__switch input {
+    display: none;
+  }
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    &::before {
+      position: absolute;
+      content: "";
+      height: 15px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+    }
+  }
+  &__slider,
+  &__round {
+    border-radius: 28px;
+    &::before {
+      border-radius: 50%;
+    }
+  }
+  input:checked + &__slider {
+    background-color: #f5821f;
+  }
+  input:focus + &__slider {
+    box-shadow: 0 0 1px #f5821f;
+  }
+  input:checked + &__slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+  }
+  &__units {
+    padding: 10px 33px;
+    position: absolute;
+    background-color: #f1f1f1;
+    right: 1px;
+    bottom: 1px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+  &__data-input-wrp {
+    width: 187px;
+    position: relative;
+    @include inputAdaptive {
+      & {
+        margin-left: auto;
+        margin-right: auto;
       }
-      &__switch {
-        position: relative;
-        display: inline-block;
-        width: 36px;
-        height: 19px;
-      }
-      &__switch input {
-        display: none;
-      }
-      &__slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-        &::before {
-          position: absolute;
-          content: "";
-          height: 15px;
-          width: 16px;
-          left: 2px;
-          bottom: 2px;
-          background-color: white;
-          -webkit-transition: .4s;
-          transition: .4s;
-        }
-      }
-      &__slider, 
-      &__round {
-        border-radius: 28px;
-        &::before {
-          border-radius: 50%;
-        }
-      }
-      input:checked + &__slider {
-        background-color: #f5821f;
-      }
-      input:focus + &__slider {
-        box-shadow: 0 0 1px #f5821f;
-      }
-      input:checked + &__slider:before {
-        -webkit-transform: translateX(16px);
-        -ms-transform: translateX(16px);
-        transform: translateX(16px);
-      }
-      &__units {
-        padding: 10px 33px;
-        position: absolute;
-        background-color: #F1F1F1;
-        right: 1px;
-        bottom: 1px;
-        font-size: 16px;
-        border-radius: 8px;
-      }
-      &__data-input-wrp {
-        width: 187px;
-        position: relative;
-      }
-      &__results-text {
-        margin-bottom: 20px;
-        font-size: 16px;
+    }
+  }
+  &__results-text {
+    margin-bottom: 20px;
+    font-size: 16px;
+    @include inputAdaptive {
+      & {
+        text-align: center;
       }
     }
   }

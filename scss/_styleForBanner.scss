@@ -1,52 +1,124 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
-$fontRobotoReg: "Roboto", sans-serif;
-
-.top-banner-br {
-  min-height: 554px;
+.top-banner-lp-br {
   position: relative;
-  font-family: $fontRobotoReg;
-  &__img-wrp {
+  display: flex;
+  justify-content: center;
+  @include mobil {
+    & {
+      margin-bottom: 20px;
+      flex-direction: column;
+    }
+  }
+  &__wrp {
     position: relative;
-    z-index: 1;
+    width: 100%;
+    @include mobil {
+      margin-bottom: 20px;
+    }
+  }
+  &__img-wrp {
+    height: 554px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    background-color: #a5a5a5;
+    @include mobil {
+      & {
+        height: 237px;
+      }
+    }
+  }
+  &__img {
+    width: 100%;
+    height: 554px;
+    object-fit: cover;
+    @include mobil {
+      & {
+        display: none;
+      }
+    }
+  }
+  &__img-mob {
+    display: none;
+    @include mobil {
+      & {
+        display: flex;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
   }
   &__text-wrp {
     max-width: 1440px;
     width: 100%;
-    height: 550px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    display: flex;
     position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
     align-items: center;
-    z-index: 2;
+    @include mobil {
+      & {
+        position: relative;
+      }
+    }
+  }
+  &__text-pos {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    @include textPad {
+      & {
+        padding-left: 16px;
+      }
+    }
+    @include mobil {
+      & {
+        margin: 0 auto;
+      }
+    }
   }
   &__text {
-    max-width: 680px;
-    position: relative;
-    display: flex;
+    max-width: 620px;
+    padding: 10px 25px;
+    background-color: #a5a5a5c7;
+    font-family: $fontRobotoReg;
     font-size: 48px;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
-    z-index: 10;
-  }
-  &__img {
-    width: 100%;
-  }
-  &__text-width {
-    max-width: 1440px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media (max-width: 1440px) {
-  .top-banner-br {
-    &__text-wrp {
-      padding-left: 16px;
-      padding-right: 16px;
+    color: #ffffff;
+    @include mobil {
+      & {
+        text-align: center;
+        font-size: 26px;
+        color: #000000;
+        background-color: #ad2a2a00;
+      }
     }
   }
 }
+
+// html код к баннеру
+// <article class="top-banner-lp-br">
+//         <section class="top-banner-lp-br__wrp">
+//           <div class="top-banner-lp-br__img-wrp">
+//             <img
+//               class="top-banner-lp-br__img"
+//               src="img/bunnerCalculator.jpg"
+//               alt="Калькулятор подбора АКБ для ИБП "
+//             />
+//             <img
+//               class="top-banner-lp-br__img-mob"
+//               src="img/bunnerCalculatorMob.png"
+//               alt="Калькулятор подбора АКБ для ИБП "
+//             />
+//           </div>
+//         </section>
+//         <section class="top-banner-lp-br__text-wrp">
+//           <div class="top-banner-lp-br__text-pos">
+//             <h1 class="top-banner-lp-br__text">
+//               Калькулятор подбора АКБ для ИБП
+//             </h1>
+//           </div>
+//         </section>
+//       </article>
