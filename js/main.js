@@ -62,7 +62,7 @@ function calculation() {
   } else if (v == 0) {
     alert('Введите напряжение')
   } else {
-    results.value = (((time * v) / efficiency) / w).toFixed(2);
+    results.value = (((time / efficiency) * w ) / v).toFixed(2);
     console.log(results.value);
   }
 }

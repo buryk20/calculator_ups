@@ -94,7 +94,7 @@
   &__data-text {
     margin-right: 6px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
   }
   &__data-icon {
     margin-right: 8px;
@@ -117,7 +117,7 @@
       bottom: 32px;
       left: -124px;
       // opacity: 0;
-      transition: opacity 0.1s ease-in-out;
+      // transition: opacity 0.1s ease-in-out;
     }
     &::before {
       content: "";
@@ -128,7 +128,7 @@
       transform: translate(-50%, 0);
       border: 10px solid transparent;
       border-top: 10px solid #f0f0f0;
-      transition: opacity 0.1s ease-in-out;
+      // transition: opacity 0.1s ease-in-out;
       z-index: -1;
     }
     &:hover::before {
@@ -243,6 +243,7 @@
   &__results-text {
     margin-bottom: 20px;
     font-size: 16px;
+    font-weight: 500;
     @include inputAdaptive {
       & {
         text-align: center;
