@@ -49,6 +49,11 @@
       margin-left: 26px;
     }
   }
+  @include mobil {
+    & {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .selection-ups-calc {
@@ -57,6 +62,11 @@
     margin-bottom: 40px;
     display: flex;
     align-items: center;
+    @include mobil {
+      & {
+        margin-bottom: 20px;
+      }
+    }
   }
   &__btn {
     margin-bottom: 20px;
@@ -74,9 +84,21 @@
   }
   &__text {
     margin-right: 60px;
+    @include mobil {
+      & {
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+      }
+    }
   }
   &__wrp {
     margin-bottom: 40px;
+    @include mobil {
+      & {
+        margin-bottom: 20px;
+      }
+    }
   }
 }
 .ups-calc-data {
@@ -148,6 +170,7 @@
     flex-direction: column;
     @include inputAdaptive {
       & {
+        margin-bottom: 20px;
         max-width: 270px;
         width: 100%;
         align-items: center;
@@ -169,6 +192,11 @@
     @include inputAdaptive {
       & {
         justify-content: space-evenly;
+      }
+    }
+    @include mobil {
+      & {
+        margin-bottom: 0;
       }
     }
   }
@@ -248,6 +276,43 @@
       & {
         text-align: center;
       }
+    }
+  }
+}
+
+.ups-calc-text {
+  margin-bottom: 40px;
+  font-family: $fontRobotoReg;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  &__title {
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 20px;
+  }
+  &__text {
+    margin-bottom: 10px;
+  }
+  &__ul-style {
+    padding-left: 16px;
+    margin-bottom: 10px;
+    list-style: disc;
+  }
+  &__text-cen {
+    text-align: center;
+  }
+  &__active {
+    max-height: 200px;
+    text-overflow: clip;
+    overflow: hidden;
+    box-shadow: 0 -4px 16px 31px #fff;
+  }
+  &__btn {
+    box-shadow: 0 -4px 16px 31px #fff;
+    text-align: right;
+    &::after {
+      content: "";
     }
   }
 }
