@@ -62,7 +62,7 @@ function calculation() {
   } else if (v == 0) {
     alert('Введите напряжение')
   } else {
-    results.value = (((time / efficiency) * w ) / v).toFixed(2);
+    results.value = (((w / v) / efficiency ) * time).toFixed(2);
     console.log(results.value);
   }
 }
@@ -82,7 +82,6 @@ function calculationAkb() {
   } else if (vAkb == 0) {
     alert('Введите напряжение')
   } else {
-    resultsAkb.value = (((ahAkb * wAkb) / vAkb) * efficiencyAkb).toFixed(2);
+    resultsAkb.value = (((ahAkb * vAkb ) / wAkb) * efficiencyAkb).toFixed(2);
   }
-
 }
