@@ -378,16 +378,28 @@
                 <p class="ups-calc-data__results-text">
                   Время работы ИБП:
                 </p>
-                <div class="ups-calc-data__data-input-wrp">
-                  <input
-                    class="ups-calc-data__data-input"
-                    id="resultsAkb"
-                    type="text"
-                    
-                    value=""
-                  />
-                  <span class="ups-calc-data__units">Ah</span>
-                </div>
+                <div class="ups-calc-data__time-wrp">
+                  <div class="ups-calc-data__data-input-wrp">
+                    <input
+                      class="ups-calc-data__data-input"
+                      id="resultsAkb"
+                      type="text"
+                      
+                      value=""
+                    />
+                    <span class="ups-calc-data__units">Ч</span>
+                  </div>
+                  <div class="ups-calc-data__data-input-wrp">
+                    <input
+                      class="ups-calc-data__data-input"
+                      id="resultsAkbMin"
+                      type="text"
+                      
+                      value=""
+                    />
+                    <span class="ups-calc-data__units">Мин</span>
+                  </div>
+                </div>  
               </div>
             </div>
           </div>
@@ -446,9 +458,10 @@
           <p class="ups-calc-text__title">0(800) 211-405</p>
           <p class="ups-calc-text__title">LogicPower – стандарт напряжения!</p>
         </div>
-        <div id="descriptionOpenClosing" onclick="openClosingDescr()" class="ups-calc-text__btn"><p>Развернуть <span class="ups-calc-arrow"></span></p></div>  
+        <div id="descriptionOpenClosing" onclick="openClosingDescr()" class="ups-calc-text__btn"><p id="expandText" class="ups-calc-arrow">Развернуть</p><img class="ups-calc-arrow__transform" src="/icon/arrov-icon-cal-ups.svg" alt="стрелка"></div>
       </article>
     </main>
     <script src="js/main.js"></script>
   </body>
 </html>
+

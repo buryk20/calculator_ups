@@ -45,14 +45,15 @@ function checkFluencyAkb() {
 }
 
 
-
-
 function calculation() {
   var time = Number(document.getElementById('time').value);
   var v = Number(document.getElementById('v').value);
   var efficiency = Number(InverterEfficiency.value);
   var w = Number(document.getElementById('w').value);
   var results = document.getElementById('results');
+  var a;
+  var Ah;
+  var total;
   if (w == 0) {
     alert('Введите нагрузку')
   } else if (efficiency == 0) {
@@ -62,8 +63,14 @@ function calculation() {
   } else if (v == 0) {
     alert('Введите напряжение')
   } else {
-    results.value = (((w / v) / efficiency ) * time).toFixed(2);
-    console.log(results.value);
+    a = w / v;
+    Ah = a * time;
+    if(efficiency > 1){
+      total = Ah/(efficiency/100)
+    } else {
+      total = Ah/(efficiency)
+    }
+    results.value = total.toFixed(2);
   }
 }
 
@@ -73,6 +80,9 @@ function calculationAkb() {
   var ahAkb = Number(document.getElementById('ahAkb').value);
   var vAkb = Number(document.getElementById('vAkb').value);
   var resultsAkb = document.getElementById('resultsAkb');
+  var resultsAkbMin = document.getElementById('resultsAkbMin');
+  var minutes;
+  var watch;
   if (wAkb == 0) {
     alert('Введите нагрузку')
   } else if (efficiencyAkb == 0) {
@@ -82,14 +92,31 @@ function calculationAkb() {
   } else if (vAkb == 0) {
     alert('Введите напряжение')
   } else {
-    resultsAkb.value = (((ahAkb * vAkb ) / wAkb) * efficiencyAkb).toFixed(2);
+    if (efficiencyAkb > 1){
+      watch = (((ahAkb * vAkb ) / wAkb) * (efficiencyAkb/100)).toFixed(2);
+    } else {
+      watch = (((ahAkb * vAkb ) / wAkb) * (efficiencyAkb)).toFixed(2);
+    }
+    resultsAkb.value = watch;
+    minutes = (watch * 60).toFixed(2);
+    resultsAkbMin.value = minutes;
   }
 }
 
 var descriptionOpenClosing = document.getElementById('descriptionOpenClosing');
-var arrowAnimation = document.querySelector('.ups-calc-arrow')
+var arrowAnimation = document.querySelector('.ups-calc-arrow__transform');
+var expandedText = document.querySelector('.ups-calc-text__active');
 function openClosingDescr() {
-  // arrowAnimation.classList.toggle(".ups-calc-arrow__animation");
-  // arrowAnimation.classList.toggle('ups-calc-arrow');
-  arrowAnimation.style.transform = "rotate(180deg)";
+  if(document.querySelector('.ups-calc-arrow__transform') !== null) {
+    arrowAnimation.classList.toggle("ups-calc-arrow__animation");
+    arrowAnimation.classList.toggle("ups-calc-arrow__transform");
+    document.getElementById("expandText").innerHTML = "Свернуть";
+    expandedText.style.maxHeight = "3500px";
+    document.getElementById('expandText').style.boxShadow = "0 -20px 20px 20px #fff0;"
+  } else {
+    arrowAnimation.classList.toggle("ups-calc-arrow__animation");
+    arrowAnimation.classList.toggle("ups-calc-arrow__transform");
+    document.getElementById("expandText").innerHTML = "Развернуть";
+    expandedText.style.maxHeight = "200px";
+  }
 }
