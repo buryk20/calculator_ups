@@ -309,10 +309,32 @@
     box-shadow: 0 -4px 16px 31px #fff;
   }
   &__btn {
-    box-shadow: 0 -4px 16px 31px #fff;
+    margin-right: 25px;
+    position: relative;
+    box-shadow: 0 -20px 20px 20px #fff;
     text-align: right;
-    &::after {
-      content: "";
-    }
+    color: #f5821f;
+    cursor: pointer;
+    
+    @at-root {
+      .ups-calc-arrow {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: -2px;
+      right: -15px;
+      font-size: 22px;
+      transition: .4s;
+      transform-origin: center center;
+      &::after {
+        content: "˅";
+        }
+      &__animation {
+        transform-origin: center center;
+      }
+
+      }
+      
+    } 
   }
 }

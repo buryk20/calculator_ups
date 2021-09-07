@@ -661,12 +661,34 @@ input:checked + .ups-calc-data__slider:before {
 }
 
 .ups-calc-text__btn {
-  -webkit-box-shadow: 0 -4px 16px 31px #fff;
-          box-shadow: 0 -4px 16px 31px #fff;
+  margin-right: 25px;
+  position: relative;
+  -webkit-box-shadow: 0 -20px 20px 20px #fff;
+          box-shadow: 0 -20px 20px 20px #fff;
   text-align: right;
+  color: #f5821f;
+  cursor: pointer;
 }
 
-.ups-calc-text__btn::after {
-  content: "";
+.ups-calc-arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -2px;
+  right: -15px;
+  font-size: 22px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.ups-calc-arrow::after {
+  content: "˅";
+}
+
+.ups-calc-arrow__animation {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
 }
 /*# sourceMappingURL=main.css.map */

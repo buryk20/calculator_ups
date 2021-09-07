@@ -85,3 +85,11 @@ function calculationAkb() {
     resultsAkb.value = (((ahAkb * vAkb ) / wAkb) * efficiencyAkb).toFixed(2);
   }
 }
+
+var descriptionOpenClosing = document.getElementById('descriptionOpenClosing');
+var arrowAnimation = document.querySelector('.ups-calc-arrow')
+function openClosingDescr() {
+  // arrowAnimation.classList.toggle(".ups-calc-arrow__animation");
+  // arrowAnimation.classList.toggle('ups-calc-arrow');
+  arrowAnimation.style.transform = "rotate(180deg)";
+}
