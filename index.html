@@ -4,20 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Калькулятор</title>
+    <title>Калькулятор для расчета емкости АКБ для ИБП </title>
+    <meta name="description" content="Расчет емкости аккумуляторной батареи для UPS и время работы источника бесперебойного питания">
+    <meta name="keywords" content="калькулятор емкости аккумулятора для ибп, выбора ибп, расчета ибп, расчет времени работы ибп калькулятор, времени автономной работы ибп, калькулятор ибп онлайн, емкости аккумулятора для ибп, расчета времени работы ибп, калькулятор нагрузки ибп, онлайн калькулятор ибп,
+    расчет источника бесперебойного питания для котла, калькулятор источника бесперебойного питания для котла
+    ">
     <link rel="stylesheet" href="css/main.css" />
-    <script src="js/jquery-3.6.0.js"></script>
   </head>
   <body>
     <main>
       <article class="top-banner-lp-br">
         <section class="top-banner-lp-br__wrp">
           <div class="top-banner-lp-br__img-wrp">
+            <div class="top-banner-lp-br__a"></div>
             <img
               class="top-banner-lp-br__img"
               src="img/bunnerCalculator.jpg"
               alt="Калькулятор подбора АКБ для ИБП "
             />
+            
             <img
               class="top-banner-lp-br__img-mob"
               src="img/bunnerCalculatorMob.png"
@@ -28,7 +33,7 @@
         <section class="top-banner-lp-br__text-wrp">
           <div class="top-banner-lp-br__text-pos">
             <h1 class="top-banner-lp-br__text">
-              Калькулятор подбора АКБ для ИБП
+              {{__('calculator_ups.title')}}
             </h1>
           </div>
         </section>
@@ -36,9 +41,7 @@
       <article class="main-cont-calc">
         <div class="text-under-banner-calc">
           <p>
-            С помощью данного калькулятора можно ориентировочно рассчитать
-            необходимую ёмкость аккумулятора для источника бесперебойного
-            питания.
+            {{__('calculator_ups.textUnderBanner')}}
           </p>
         </div>
         <div class="line-calc"></div>
@@ -46,18 +49,18 @@
           <div class="selection-ups-calc__wrp">
             <div class="selection-ups-calc__heading-wrp">
               <h2 class="selection-ups-calc__text">
-                Расчет емкости аккумуляторной батареи для источника
-                бесперебойного питания
+                {{__('calculator_ups.textUnderBanner')}}
+                
               </h2>
             </div>
             <div class="ups-calc-data">
               <div class="ups-calc-data__wrp">
                 <div class="ups-calc-data__pos-cont">
                   <div class="ups-calc-data__wrp-text">
-                    <p class="ups-calc-data__data-text">Нагрузка, W:</p>
+                    <p class="ups-calc-data__data-text">{{__('calculator_ups.load')}}</p>
                     <div
                       class="ups-calc-data__icon-wrp"
-                      data-title="Суммарная нагрузка, которая подается на ИБП. Можно посмотреть в тех документации приборов, которые подключены к ИБП"
+                      data-title="{{__('calculator_ups.loadPrompt')}}"
                     >
                       <img
                         class="ups-calc-data__data-icon"
@@ -77,10 +80,10 @@
                 </div>
                 <div class="ups-calc-data__pos-cont">
                   <div class="ups-calc-data__wrp-text">
-                    <p class="ups-calc-data__data-text">КПД инвертора:</p>
+                    <p class="ups-calc-data__data-text">{{__('calculator_ups.inverterEfficiency')}}</p>
                     <div
                       class="ups-calc-data__icon-wrp"
-                      data-title="КПД инвертора можно посмотреть в паспорте ИБП, если вы не знаете это значение, то ставьте по умолчанию 0,8."
+                      data-title="{{__('calculator_ups.inverterEfficiencyPrompt')}}"
                     >
                       <img
                         class="ups-calc-data__data-icon"
@@ -93,7 +96,7 @@
                         type="checkbox"
                         onclick="checkFluency()"
                         id="InverterEfficiencyPromt"
-                        checked
+                        
                       />
                       <span
                         class="ups-calc-data__slider ups-calc-data__round"
@@ -106,6 +109,9 @@
                       type="number"
                       min="0"
                       id="InverterEfficiency"
+                      checked="checked"
+                      value="0.8"
+                      disabled
                     />
                     <span
                       id="InverterEfficiencyColor"
@@ -144,10 +150,10 @@
                 </div> -->
                 <div class="ups-calc-data__pos-cont">
                   <div class="ups-calc-data__wrp-text">
-                    <p class="ups-calc-data__data-text">Время работы:</p>
+                    <p class="ups-calc-data__data-text">{{__('calculator_ups.workingHours')}}</p>
                     <div
                       class="ups-calc-data__icon-wrp"
-                      data-title="Время которое должно проработать ИБП"
+                      data-title="{{__('calculator_ups.workingHoursPrompt')}}"
                     >
                       <img
                         class="ups-calc-data__data-icon"
@@ -162,17 +168,17 @@
                       type="number"
                       id="time"
                     />
-                    <span class="ups-calc-data__units">Ч</span>
+                    <span class="ups-calc-data__units">h</span>
                   </div>
                 </div>
                 <div class="ups-calc-data__pos-cont ups-calc-data__icon-wrp-v">
                   <div class="ups-calc-data__wrp-text">
                     <p class="ups-calc-data__data-text">
-                      Номинальное напряжение АКБ:
+                      {{__('calculator_ups.batteryRated')}}
                     </p>
                     <div
                       class="ups-calc-data__icon-wrp"
-                      data-title="Номинальное напряжение аккумуляторной батареи. "
+                      data-title="{{__('calculator_ups.batteryRatedPrompt')}}"
                     >
                       <img
                         class="ups-calc-data__data-icon"
@@ -192,10 +198,10 @@
                 </div>
               </div>
               <button onclick="calculation()" class="selection-ups-calc__btn">
-                Рассчитать
+                {{__('calculator_ups.calculate')}}
               </button>
               <p class="ups-calc-data__results-text">
-                Минимальная емкость АКБ:
+                {{__('calculator_ups.calculateRated')}}
               </p>
               <div class="ups-calc-data__data-input-wrp">
                 <input
@@ -203,6 +209,7 @@
                   id="results"
                   type="text"
                   value=""
+                  disabled
                 />
                 <span class="ups-calc-data__units">Ah</span>
               </div>
@@ -212,7 +219,7 @@
           <div class="selection-ups-calc__wrp">
             <div class="selection-ups-calc__heading-wrp">
               <h2 class="selection-ups-calc__text">
-                Расчет времени автономной работы ИБП
+                {{__('calculator_ups.upsOperatingTime')}}
               </h2>
             </div>
             <div class="selection-ups-calc-act__wrp">
@@ -230,10 +237,10 @@
                 <div class="ups-calc-data__wrp">
                   <div class="ups-calc-data__pos-cont">
                     <div class="ups-calc-data__wrp-text">
-                      <p class="ups-calc-data__data-text">Нагрузка, W:</p>
+                      <p class="ups-calc-data__data-text">{{__('calculator_ups.load')}}</p>
                       <div
                         class="ups-calc-data__icon-wrp"
-                        data-title="Суммарная нагрузка, которая подается на ИБП. Можно посмотреть в тех документации приборов, которые подключены к ИБП"
+                        data-title="{{__('calculator_ups.load')}}"
                       >
                         <img
                           class="ups-calc-data__data-icon"
@@ -253,10 +260,10 @@
                   </div>
                   <div class="ups-calc-data__pos-cont">
                     <div class="ups-calc-data__wrp-text">
-                      <p class="ups-calc-data__data-text">КПД инвертора:</p>
+                      <p class="ups-calc-data__data-text">{{__('calculator_ups.inverterEfficiency')}}</p>
                       <div
                         class="ups-calc-data__icon-wrp"
-                        data-title="КПД инвертора можно посмотреть в паспорте ИБП, если вы не знаете это значение, то ставьте по умолчанию 0,8."
+                        data-title="{{__('calculator_ups.inverterEfficiencyPrompt')}}"
                       >
                         <img
                           class="ups-calc-data__data-icon"
@@ -269,7 +276,6 @@
                           type="checkbox"
                           onclick="checkFluencyAkb()"
                           id="InverterEfficiencyPromtAkb"
-                          checked
                         />
                         <span
                           class="ups-calc-data__slider ups-calc-data__round"
@@ -282,6 +288,8 @@
                         type="number"
                         min="0"
                         id="InverterEfficiencyAkb"
+                        value="0.8"
+                        disabled
                       />
                       <span
                         id="InverterEfficiencyColorAkb"
@@ -320,7 +328,7 @@
                   </div> -->
                   <div class="ups-calc-data__pos-cont">
                     <div class="ups-calc-data__wrp-text">
-                      <p class="ups-calc-data__data-text">Ёмкость АКБ:</p>
+                      <p class="ups-calc-data__data-text">{{__('calculator_ups.capacity')}}</p>
                       <div
                         class="ups-calc-data__icon-wrp"
                         data-title="Емкость аккумуляторной батареи"
@@ -346,11 +354,11 @@
                   >
                     <div class="ups-calc-data__wrp-text">
                       <p class="ups-calc-data__data-text">
-                        Номинальное напряжение АКБ:
+                        {{__('calculator_ups.batteryRated')}}
                       </p>
                       <div
                         class="ups-calc-data__icon-wrp"
-                        data-title="Номинальное напряжение аккумуляторной батареи."
+                        data-title="{{__('calculator_ups.batteryRatedPrompt')}}"
                       >
                         <img
                           class="ups-calc-data__data-icon"
@@ -373,10 +381,10 @@
                   onclick="calculationAkb()"
                   class="selection-ups-calc__btn"
                 >
-                  Рассчитать
+                {{__('calculator_ups.calculate')}}
                 </button>
                 <p class="ups-calc-data__results-text">
-                  Время работы ИБП:
+                  {{__('calculator_ups.workingHoursUps')}}
                 </p>
                 <div class="ups-calc-data__time-wrp">
                   <div class="ups-calc-data__data-input-wrp">
@@ -384,20 +392,9 @@
                       class="ups-calc-data__data-input"
                       id="resultsAkb"
                       type="text"
-                      
+                      disabled
                       value=""
                     />
-                    <span class="ups-calc-data__units">Ч</span>
-                  </div>
-                  <div class="ups-calc-data__data-input-wrp">
-                    <input
-                      class="ups-calc-data__data-input"
-                      id="resultsAkbMin"
-                      type="text"
-                      
-                      value=""
-                    />
-                    <span class="ups-calc-data__units">Мин</span>
                   </div>
                 </div>  
               </div>
@@ -408,55 +405,55 @@
       </article>
       <article class="ups-calc-text">
         <div class="ups-calc-text__active">
-          <h3 class="ups-calc-text__title">Расчет емкости аккумуляторной батареи для UPS и время работы источника бесперебойного питания</h3>
-          <p class="ups-calc-text__text">Если вы владелец дорогого электрооборудования, которое требует стабильного и бесперебойного питания - без ИБП вам не обойтись.</p>
-          <p class="ups-calc-text__text">Насколько проще была бы наша жизнь, если бы существовал универсальный источник бесперебойного питания на все случаи жизни?</p>
-          <p class="ups-calc-text__text">На практике же, каждый пользователь предъявляет к источнику бесперебойного питания конкретные требования, которые зависят от назначения, типа и количества техники, которая будет подключена к ИБП. </p>
-          <p class="ups-calc-text__text">Специалисты компании LogicPower считают, что к выбору UPS для дома или бизнеса необходимо подходить рационально. Калькулятор ИБП избавит вас от разочарований и лишних трат, если вы неправильно подберете мощность, тип ИБП или емкость аккумулятора.</p>
+          <h3 class="ups-calc-text__title">{{__('calculator_ups.capacityCalcul')}}</h3>
+          <p class="ups-calc-text__text">{{__('calculator_ups.owner')}}</p>
+          <p class="ups-calc-text__text">{{__('calculator_ups.simpleLife')}}</p>
+          <p class="ups-calc-text__text">{{__('calculator_ups.practice')}}</p>
+          <p class="ups-calc-text__text">{{__('calculator_ups.specialiasts')}}</p>
           <h4 class="ups-calc-text__title">Типы источников бесперебойного питания</h4>
-          <p class="ups-calc-text__text"><strong><a href="#">Smart ИБП с двойным преобразованием</a> </strong> применяют для высокочувствительной техники с большим количеством «электронной начинки».  </p>
-          <h5 class="ups-calc-text__title"><strong>Преимущества ИБП on-line:</strong></h5>
+          <p class="ups-calc-text__text"><strong><a href="#">{{__('calculator_ups.upsSmart')}}</a> </strong> {{__('calculator_ups.upsSmartText')}}</p>
+          <h5 class="ups-calc-text__title"><strong>{{__('calculator_ups.benefitsSmart')}}</strong></h5>
           <ul class="ups-calc-text__ul-style">
-            <li>широкий диапазон входных напряжений (110-300V) при минимальном отклонении на выходе (220V±1%)</li>
-            <li>скорость переключения режимов работы у бесперебойников смарт онлайн равна нулю</li>
-            <li>модели Smart ИБП online с одинаковой мощностью можно параллельно соединять между собой </li>
-            <li>возможность удаленного управления и контроля параметров работы инверторов напряжения.</li>
+            <li>{{__('calculator_ups.benefitsSmart1')}}</li>
+            <li>{{__('calculator_ups.benefitsSmart2')}}</li>
+            <li>{{__('calculator_ups.benefitsSmart3')}}</li>
+            <li>{{__('calculator_ups.benefitsSmart4')}}</li>
           </ul>
-          <p class="ups-calc-text__text"><strong><a href="">ИБП линейно-интерактивные </a> </strong> пользуются широким спросом у владельцев персональных компьютеров. </p>
-          <h5 class="ups-calc-text__title"><strong>Преимущества линейно-интерактивных ИБП:</strong></h5>
+          <p class="ups-calc-text__text"><strong><a href="">{{__('calculator_ups.upsLin')}}</a> </strong> {{__('calculator_ups.upsLinText')}}</p>
+          <h5 class="ups-calc-text__title"><strong>{{__('calculator_ups.upsLinBenefits')}}</strong></h5>
           <ul class="ups-calc-text__ul-style">
-            <li>линейно-интерактивные бесперебойники LogicPower имеют доступную стоимость при высоком качестве сборки и внутреннего наполнения</li>
-            <li>встроенная функция AVR позволяет использовать UPS линейно-интерактивный как стабилизатор напряжения для компьютера</li>
-            <li>время автономной работы от аккумулятора от 10 до 30 минут, что позволяет сохранить необходимые файлы и корректно отключить ПК</li>
+            <li>{{__('calculator_ups.upsLinBenefits1')}}</li>
+            <li>{{__('calculator_ups.upsLinBenefits2')}}</li>
+            <li>{{__('calculator_ups.upsLinBenefits3')}}</li>
           </ul>
-          <p class="ups-calc-text__text"><strong><a href="">ИБП с правильной синусоидой </a> </strong> в паре с внешним аккумулятором используют для обеспечения бесперебойного питания 24/7 систем автономного отопления, водоснабжения, видеонаблюдения и т.д.</p>
-          <h5 class="ups-calc-text__title"><strong>Преимущества UPS с чистой синусоидой:</strong></h5>
+          <p class="ups-calc-text__text"><strong><a href="">{{__('calculator_ups.upsPs')}}</a> </strong> {{__('calculator_ups.upsPsText')}}</p>
+          <h5 class="ups-calc-text__title"><strong>{{__('calculator_ups.upsPsBenefits')}}</strong></h5>
           <ul class="ups-calc-text__ul-style">
-            <li>источники бесперебойного питания с правильной синусоидой имеют широкий спектр защитных функций от: короткого замыкания, скачков напряжения, сетевых помех, разряда и избыточного заряда батарей, высокого/низкого напряжения</li>
-            <li>скорость переключения у бесперебойников с чистой синусоидой на работу от аккумулятора и обратно – меньше секунды</li>
+            <li>{{__('calculator_ups.upsPsBenefits1')}}</li>
+            <li>{{__('calculator_ups.upsPsBenefits2')}}</li>
           </ul>
-          <p class="ups-calc-text__text"><strong><a href="">ИБП гибридный MPPT с правильной синусоидой  </a> </strong>чаще всего используют для автономных систем бесперебойного питания на основе солнечных батарей. ИБП данного типа совместимы  и с традиционными, и с альтернативными источниками электрической энергии. </p>
-          <h5 class="ups-calc-text__title"><strong>Преимущества гибридных источников бесперебойного питания с MPPT контроллером:</strong></h5>
+          <p class="ups-calc-text__text"><strong><a href="">{{__('calculator_ups.upsMppt')}}</a> </strong>{{__('calculator_ups.upsMpptTetx')}}</p>
+          <h5 class="ups-calc-text__title"><strong>{{__('calculator_ups.upsMpptBenefits')}}</strong></h5>
           <ul class="ups-calc-text__ul-style">
-            <li>ИБП гибридный автоматически регулирует ток заряда внешней батареи при помощи микропроцессорного управления</li>
-            <li>гибридный инвертор имеет высокую производительность, КПД – 98% </li>
-            <li>UPS обеспечивает максимально точный контроль параметров работы и распределения вырабатываемой энергии</li>
+            <li>{{__('calculator_ups.upsMpptBenefits1')}}</li>
+            <li>{{__('calculator_ups.upsMpptBenefits2')}}</li>
+            <li>{{__('calculator_ups.upsMpptBenefits3')}}</li>
           </ul>
-          <p class="ups-calc-text__text"><strong>Онлайн калькулятор ИБП </strong> поможет произвести быстрый и точный расчет необходимой вам мощности источника бесперебойного питания с учетом суммарной мощности, подключенного к нему оборудования* и коэффициента запаса.</p>
-          <p class="ups-calc-text__text">*Для расчетов берется мощность каждой единицы оборудования, указанная производителем в технической документации </p>
-          <h3 class="ups-calc-text__title"><strong>Как выбрать аккумулятор для источника бесперебойного питания?</strong> </h3>
-          <p class="ups-calc-text__text">После того как вы определитесь с типом и мощностью источника бесперебойного питания, необходимо правильно подобрать аккумуляторную батарею. </p>
-          <p class="ups-calc-text__text">Главный критерий выбора – необходимое вам время резервного питания электрооборудования от аккумуляторной батареи. </p>
-          <h3 class="ups-calc-text__title"><strong>Типы аккумуляторов для ИБП</strong> </h3>
-          <p class="ups-calc-text__text"><strong><a href="#">Аккумуляторы свинцово-кислотные AGМ </a> </strong>герметичные необслуживаемые батареи пользуются широким спросом благодаря доступной стоимости. Кроме цены необслуживаемые АКБ данного типа имеют следующие преимущества: высокая надежность, стабильное напряжение, широкий диапазон рабочих температур. Рассчитаны на 400 циклов заряд/разряд  </p>
-          <p class="ups-calc-text__text"><strong><a href="#">Мультигелевые аккумуляторные батареи  </a> </strong>– это модернизированные AGM аккумуляторы, которые имеют увеличенный ресурс циклов работы – 800. </p>
-          <p class="ups-calc-text__text"><strong><a href="#">Аккумуляторы гелевые GeL  </a> </strong>– благодаря вязкой структуре электролита не боятся низких температур и отлично работают при низком заряде батареи. Ресурс циклов заряд/разряд – 1200</p>
-          <p class="ups-calc-text__text"><strong><a href="#">Литий железо фосфатные АКБ  </a> </strong>отличаются устойчивостью к высоким и низким температурам окружающей среды, имеют хорошую производительность, минимальный уровень токсичности, компактные размеры и малый вес. Аккумуляторы Lifepo4 выдерживают более 7000 циклов</p>
-          <p class="ups-calc-text__text"><strong><a href="#">Онлайн калькулятор емкости аккумулятора для ИБП </a> </strong>поможет правильно подобрать АКБ</p>
-          <p class="ups-calc-text__text-cen">Остались вопросы?</p>
-          <p class="ups-calc-text__text-cen">Технические эксперты  LogicPower  дадут квалифицированную консультацию и помогут Вам с выбором оборудования для систем бесперебойного питания</p>
+          <p class="ups-calc-text__text"><strong>{{__('calculator_ups.calcOnline')}}</strong>{{__('calculator_ups.calcOnlineText')}}</p>
+          <p class="ups-calc-text__text">{{__('calculator_ups.calcOnlinePayment')}}</p>
+          <h3 class="ups-calc-text__title"><strong>{{__('calculator_ups.batterySelection')}}</strong> </h3>
+          <p class="ups-calc-text__text">{{__('calculator_ups.batterySelection1')}}</p>
+          <p class="ups-calc-text__text">{{__('calculator_ups.batterySelection2')}}</p>
+          <h3 class="ups-calc-text__title"><strong>{{__('calculator_ups.typeAkb')}}</strong> </h3>
+          <p class="ups-calc-text__text"><strong><a href="#">{{__('calculator_ups.agm')}}</a> </strong>{{__('calculator_ups.agmText')}}</p>
+          <p class="ups-calc-text__text"><strong><a href="#">{{__('calculator_ups.mg')}}</a> </strong>{{__('calculator_ups.mg')}}</p>
+          <p class="ups-calc-text__text"><strong><a href="#">{{__('calculator_ups.gel')}}  </a> </strong>{{__('calculator_ups.gelText')}}</p>
+          <p class="ups-calc-text__text"><strong><a href="#">{{__('calculator_ups.Liion')}}</a> </strong>{{__('calculator_ups.LiionText')}}</p>
+          <p class="ups-calc-text__text"><strong><a href="#">{{__('calculator_ups.onCal')}}</a> </strong>{{__('calculator_ups.onCalText')}}</p>
+          <p class="ups-calc-text__text-cen">{{__('calculator_ups.question')}}</p>
+          <p class="ups-calc-text__text-cen">{{__('calculator_ups.questionText')}}</p>
           <p class="ups-calc-text__title">0(800) 211-405</p>
-          <p class="ups-calc-text__title">LogicPower – стандарт напряжения!</p>
+          <p class="ups-calc-text__title">{{__('calculator_ups.tagLine')}}</p>
         </div>
         <div id="descriptionOpenClosing" onclick="openClosingDescr()" class="ups-calc-text__btn"><p id="expandText" class="ups-calc-arrow">Развернуть</p><img class="ups-calc-arrow__transform" src="icon/arrov-icon-cal-ups.svg" alt="стрелка"></div>
       </article>

@@ -103,6 +103,14 @@
 }
 .ups-calc-data {
   padding-left: 0;
+  #InverterEfficiency,
+  #InverterEfficiencyAkb {
+    border-color: #f1f1f1;
+  }
+  #InverterEfficiencyColor,
+  #InverterEfficiencyColorAkb {
+    color: #8a8a8a;;
+  } 
   &__data-input {
     max-width: 187px;
     @include boxInput;
@@ -337,7 +345,7 @@
   }
   &__active {
     max-height: 200px;
-    padding-bottom: 30px;
+    padding-bottom: 34px;
     text-overflow: clip;
     overflow: hidden;
     box-shadow: 0 -4px 16px 31px #fff;
