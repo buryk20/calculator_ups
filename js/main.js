@@ -73,7 +73,8 @@ function calculation() {
     } else {
       total = Ah/(efficiency)
     }
-    results.value = total.toFixed(0);
+    console.log(total);
+    results.value = Math.ceil(total);
   }
 }
 function calculationAkb() {
