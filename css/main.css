@@ -400,13 +400,13 @@ label {
   padding-left: 0;
 }
 
-.ups-calc-data #InverterEfficiency,
-.ups-calc-data #InverterEfficiencyAkb {
+.ups-calc-data [data-input-selector],
+.ups-calc-data [data-input-selector] {
   border-color: #f1f1f1;
 }
 
-.ups-calc-data #InverterEfficiencyColor,
-.ups-calc-data #InverterEfficiencyColorAkb {
+.ups-calc-data [data-input-selector],
+.ups-calc-data [data-input-selector] {
   color: #8a8a8a;
 }
 
@@ -420,6 +420,11 @@ label {
 
 .ups-calc-data__data-input::-webkit-inner-spin-button {
   display: none;
+}
+
+.ups-calc-data__data-input.active {
+  color: black;
+  border-color: #8a8a8a;
 }
 
 .ups-calc-data__data-wrp-text {

@@ -10,6 +10,7 @@
     расчет источника бесперебойного питания для котла, калькулятор источника бесперебойного питания для котла
     ">
     <link rel="stylesheet" href="css/main.css" />
+    <script src="./js/main.js"></script>
   </head>
   <body>
     <main>
@@ -22,7 +23,7 @@
               src="img/bunnerCalculator.jpg"
               alt="Калькулятор подбора АКБ для ИБП "
             />
-            
+
             <img
               class="top-banner-lp-br__img-mob"
               src="img/bunnerCalculatorMob.png"
@@ -41,23 +42,25 @@
       <article class="main-cont-calc">
         <div class="text-under-banner-calc">
           <p>
-            {{__('calculator_ups.textUnderBanner')}}
+            С помощью данного калькулятора можно ориентировочно рассчитать
+   необходимую ёмкость аккумулятора для источника бесперебойного
+   питания.
           </p>
         </div>
         <div class="line-calc"></div>
         <div class="selection-ups-calc">
-          <div class="selection-ups-calc__wrp">
+          <div class="selection-ups-calc__wrp" data-input-wrp>
             <div class="selection-ups-calc__heading-wrp">
               <h2 class="selection-ups-calc__text">
-                {{__('calculator_ups.capacityCalculation')}}
-                
+                Расчет емкости аккумуляторной батареи для источника
+   бесперебойного питания
               </h2>
             </div>
-            <div class="ups-calc-data">
+            <div class="ups-calc-data" data-input-wrp>
               <div class="ups-calc-data__wrp">
                 <div class="ups-calc-data__pos-cont">
                   <div class="ups-calc-data__wrp-text">
-                    <p class="ups-calc-data__data-text">{{__('calculator_ups.load')}}</p>
+                    <p class="ups-calc-data__data-text">Нагрузка, W:</p>
                     <div
                       class="ups-calc-data__icon-wrp"
                       data-title="{{__('calculator_ups.loadPrompt')}}"
@@ -71,6 +74,8 @@
                   </div>
                   <div class="ups-calc-data__data-input-wrp">
                     <input
+                    title="Нагрузка"
+                      data-input
                       class="ups-calc-data__data-input"
                       id="w"
                       type="number"
@@ -80,7 +85,7 @@
                 </div>
                 <div class="ups-calc-data__pos-cont">
                   <div class="ups-calc-data__wrp-text">
-                    <p class="ups-calc-data__data-text">{{__('calculator_ups.inverterEfficiency')}}</p>
+                    <p class="ups-calc-data__data-text">КПД инвертора:</p>
                     <div
                       class="ups-calc-data__icon-wrp"
                       data-title="{{__('calculator_ups.inverterEfficiencyPrompt')}}"
@@ -93,10 +98,11 @@
                     </div>
                     <label class="ups-calc-data__switch">
                       <input
+                        data-input
                         type="checkbox"
-                        onclick="checkFluency()"
+                        data-selector
                         id="InverterEfficiencyPromt"
-                        
+
                       />
                       <span
                         class="ups-calc-data__slider ups-calc-data__round"
@@ -105,7 +111,9 @@
                   </div>
                   <div class="ups-calc-data__data-input-wrp">
                     <input
+                      data-input
                       class="ups-calc-data__data-input"
+                      data-input-selector
                       type="number"
                       min="0"
                       id="InverterEfficiency"
@@ -136,21 +144,21 @@
                               onclick="dischargeDepth()"
                               id="dischargeDepthPromt"checked/>
                       <span class="ups-calc-data__slider ups-calc-data__round"></span>
-                    </label>  
+                    </label>
                   </div>
                   <div class="ups-calc-data__data-input-wrp">
-                    <input class="ups-calc-data__data-input" 
-                          type="text" 
-                          id="dischargeDepth" 
+                    <input class="ups-calc-data__data-input"
+                          type="text"
+                          id="dischargeDepth"
                           title="Используйте числовой формат" pattern="^[0-9]+$"
                           onkeyup="this.value = this.value.replace(/[^\d]/g,'')"
                           />
                     <span id="dischargeDepthColor" class="ups-calc-data__units">W</span>
-                  </div>  
+                  </div>
                 </div> -->
                 <div class="ups-calc-data__pos-cont">
                   <div class="ups-calc-data__wrp-text">
-                    <p class="ups-calc-data__data-text">{{__('calculator_ups.workingHours')}}</p>
+                    <p class="ups-calc-data__data-text">Время работы:</p>
                     <div
                       class="ups-calc-data__icon-wrp"
                       data-title="{{__('calculator_ups.workingHoursPrompt')}}"
@@ -164,6 +172,8 @@
                   </div>
                   <div class="ups-calc-data__data-input-wrp">
                     <input
+                    title="Номинальное напряжение АКБ"
+                      data-input
                       class="ups-calc-data__data-input"
                       type="number"
                       id="time"
@@ -174,7 +184,7 @@
                 <div class="ups-calc-data__pos-cont ups-calc-data__icon-wrp-v">
                   <div class="ups-calc-data__wrp-text">
                     <p class="ups-calc-data__data-text">
-                      {{__('calculator_ups.batteryRated')}}
+                      Номинальное напряжение АКБ:
                     </p>
                     <div
                       class="ups-calc-data__icon-wrp"
@@ -189,6 +199,8 @@
                   </div>
                   <div class="ups-calc-data__data-input-wrp">
                     <input
+                      data-input
+                      title="Номинальное напряжение АКБ:"
                       class="ups-calc-data__data-input"
                       type="number"
                       id="v"
@@ -197,18 +209,19 @@
                   </div>
                 </div>
               </div>
-              <button onclick="calculation()" class="selection-ups-calc__btn">
-                {{__('calculator_ups.calculate')}}
+              <button data-btn class="selection-ups-calc__btn">
+                Рассчитать
               </button>
               <p class="ups-calc-data__results-text">
-                {{__('calculator_ups.calculateRated')}}
+                Минимальная емкость АКБ:
               </p>
               <div class="ups-calc-data__data-input-wrp">
                 <input
+                  data-input
                   class="ups-calc-data__data-input"
                   id="results"
                   type="text"
-                  value=""
+                  value="0"
                   disabled
                 />
                 <span class="ups-calc-data__units">Ah</span>
@@ -216,10 +229,10 @@
             </div>
           </div>
           <div class="line-calc"></div>
-          <div class="selection-ups-calc__wrp">
+          <div class="selection-ups-calc__wrp" data-input-wrp>
             <div class="selection-ups-calc__heading-wrp">
               <h2 class="selection-ups-calc__text">
-                {{__('calculator_ups.upsOperatingTime')}}
+                Расчет времени автономной работы ИБП
               </h2>
             </div>
             <div class="selection-ups-calc-act__wrp">
@@ -237,7 +250,7 @@
                 <div class="ups-calc-data__wrp">
                   <div class="ups-calc-data__pos-cont">
                     <div class="ups-calc-data__wrp-text">
-                      <p class="ups-calc-data__data-text">{{__('calculator_ups.load')}}</p>
+                      <p class="ups-calc-data__data-text">Нагрузка, W:</p>
                       <div
                         class="ups-calc-data__icon-wrp"
                         data-title="{{__('calculator_ups.load')}}"
@@ -251,6 +264,8 @@
                     </div>
                     <div class="ups-calc-data__data-input-wrp">
                       <input
+                      title="Нагрузка, W:"
+                        data-input
                         class="ups-calc-data__data-input"
                         id="wAkb"
                         type="number"
@@ -260,7 +275,7 @@
                   </div>
                   <div class="ups-calc-data__pos-cont">
                     <div class="ups-calc-data__wrp-text">
-                      <p class="ups-calc-data__data-text">{{__('calculator_ups.inverterEfficiency')}}</p>
+                      <p class="ups-calc-data__data-text">КПД инвертора:</p>
                       <div
                         class="ups-calc-data__icon-wrp"
                         data-title="{{__('calculator_ups.inverterEfficiencyPrompt')}}"
@@ -273,9 +288,9 @@
                       </div>
                       <label class="ups-calc-data__switch">
                         <input
+                          data-input
                           type="checkbox"
-                          onclick="checkFluencyAkb()"
-                          id="InverterEfficiencyPromtAkb"
+                          data-selector
                         />
                         <span
                           class="ups-calc-data__slider ups-calc-data__round"
@@ -284,7 +299,9 @@
                     </div>
                     <div class="ups-calc-data__data-input-wrp">
                       <input
+                        data-input
                         class="ups-calc-data__data-input"
+                        data-input-selector
                         type="number"
                         min="0"
                         id="InverterEfficiencyAkb"
@@ -314,21 +331,21 @@
                                onclick="dischargeDepth()"
                                id="dischargeDepthPromt"checked/>
                         <span class="ups-calc-data__slider ups-calc-data__round"></span>
-                      </label>  
+                      </label>
                     </div>
                     <div class="ups-calc-data__data-input-wrp">
-                      <input class="ups-calc-data__data-input" 
-                            type="text" 
-                            id="dischargeDepth" 
+                      <input class="ups-calc-data__data-input"
+                            type="text"
+                            id="dischargeDepth"
                             title="Используйте числовой формат" pattern="^[0-9]+$"
                             onkeyup="this.value = this.value.replace(/[^\d]/g,'')"
                             />
                       <span id="dischargeDepthColor" class="ups-calc-data__units">W</span>
-                    </div>  
+                    </div>
                   </div> -->
                   <div class="ups-calc-data__pos-cont">
                     <div class="ups-calc-data__wrp-text">
-                      <p class="ups-calc-data__data-text">{{__('calculator_ups.capacity')}}</p>
+                      <p class="ups-calc-data__data-text">Ёмкость АКБ:</p>
                       <div
                         class="ups-calc-data__icon-wrp"
                         data-title="Емкость аккумуляторной батареи"
@@ -342,6 +359,7 @@
                     </div>
                     <div class="ups-calc-data__data-input-wrp">
                       <input
+                        data-input
                         class="ups-calc-data__data-input"
                         type="number"
                         id="ahAkb"
@@ -354,7 +372,7 @@
                   >
                     <div class="ups-calc-data__wrp-text">
                       <p class="ups-calc-data__data-text">
-                        {{__('calculator_ups.batteryRated')}}
+                        Номинальное напряжение АКБ:
                       </p>
                       <div
                         class="ups-calc-data__icon-wrp"
@@ -369,6 +387,8 @@
                     </div>
                     <div class="ups-calc-data__data-input-wrp">
                       <input
+                      title="Номинальное напряжение АКБ:"
+                        data-input
                         class="ups-calc-data__data-input"
                         type="number"
                         id="vAkb"
@@ -378,25 +398,26 @@
                   </div>
                 </div>
                 <button
-                  onclick="calculationAkb()"
+                  data-btn
                   class="selection-ups-calc__btn"
                 >
-                {{__('calculator_ups.calculate')}}
+                Рассчитать
                 </button>
                 <p class="ups-calc-data__results-text">
-                  {{__('calculator_ups.workingHoursUps')}}
+                  Время работы:
                 </p>
                 <div class="ups-calc-data__time-wrp">
                   <div class="ups-calc-data__data-input-wrp">
                     <input
+                      data-input
                       class="ups-calc-data__data-input"
                       id="resultsAkb"
                       type="text"
                       disabled
-                      value=""
+                      value="0"
                     />
                   </div>
-                </div>  
+                </div>
               </div>
             </div>
           </div>
@@ -405,7 +426,7 @@
       </article>
       <article class="ups-calc-text">
         <div class="ups-calc-text__active">
-          <h3 class="ups-calc-text__title">{{__('calculator_ups.capacityCalcul')}}</h3>
+          <h3 class="ups-calc-text__title">Расчет емкости аккумуляторной батареи для UPS и время работы источника бесперебойного питания</h3>
           <p class="ups-calc-text__text">{{__('calculator_ups.owner')}}</p>
           <p class="ups-calc-text__text">{{__('calculator_ups.simpleLife')}}</p>
           <p class="ups-calc-text__text">{{__('calculator_ups.practice')}}</p>
@@ -458,7 +479,6 @@
         <div id="descriptionOpenClosing" onclick="openClosingDescr()" class="ups-calc-text__btn"><p id="expandText" class="ups-calc-arrow">Развернуть</p><img class="ups-calc-arrow__transform" src="icon/arrov-icon-cal-ups.svg" alt="стрелка"></div>
       </article>
     </main>
-    <script src="js/main.js"></script>
   </body>
 </html>
 

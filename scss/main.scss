@@ -103,19 +103,24 @@
 }
 .ups-calc-data {
   padding-left: 0;
-  #InverterEfficiency,
-  #InverterEfficiencyAkb {
+  [data-input-selector],
+  [data-input-selector]{
     border-color: #f1f1f1;
   }
-  #InverterEfficiencyColor,
-  #InverterEfficiencyColorAkb {
+  [data-input-selector],
+  [data-input-selector] {
     color: #8a8a8a;;
-  } 
+  }
   &__data-input {
     max-width: 187px;
     @include boxInput;
     &::-webkit-inner-spin-button {
       display: none;
+    }
+
+    &.active {
+      color: black;
+      border-color: #8a8a8a;
     }
   }
   &__data-wrp-text {
@@ -293,8 +298,8 @@
         flex-wrap: wrap;
         justify-content: space-evenly;
       }
-    }  
-  } 
+    }
+  }
   &__data-input-wrp {
     @include inputAdaptive {
       & {
@@ -324,8 +329,8 @@
   padding-left: 16px;
   padding-right: 16px;
   font-size: 16px;
-  
-  
+
+
   &__title {
     margin-bottom: 10px;
     text-align: center;
@@ -360,14 +365,14 @@
     text-align: right;
     color: #f5821f;
     cursor: pointer;
-    
+
     @at-root {
       .ups-calc-arrow {
         margin-right: 10px;
         position: relative;
         display: flex;
         align-items: center;
-        
+
         transform-origin: center center;
         &__animation {
           transform-origin: center center;
@@ -376,13 +381,13 @@
           // padding-left: 10px;
           transform: rotate(0deg);
           transition: .4s;
-        } 
+        }
         &__animation {
           // padding-left: 10px;
           transform: rotate(180deg);
           transition: .4s;
         }
       }
-    } 
+    }
   }
 }
