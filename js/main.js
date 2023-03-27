@@ -14,13 +14,12 @@ window.onload = function() {
   let inputValue = [];
   let input = [];
   let res;
+  let resTime;
 
   btn.forEach((el, index) => {
     el.addEventListener('click', () => {
       delArr(input);
       delArr(inputValue);
-      inputValue.splice(0, inputValue.length);
-      console.log(inputWrp[index].querySelectorAll('input'));
       inputWrp[index].querySelectorAll('input').forEach(el => {
         if(el.value === '') {
           alert(`Заполните поле ${el.title}`);
@@ -29,14 +28,18 @@ window.onload = function() {
         inputValue.push(Number(el.value));
         input.push(el)
       });
-      console.log(input);
-      console.log(inputValue);
-      inputValue[2] > 1 ? res = inputValue[0] / inputValue[4] * inputValue[3]/(inputValue[2]/100) : res = inputValue[0] / inputValue[4] * inputValue[3]/inputValue[2];
-      input[5].value = res;
+      index === 0 ?
+      (res = inputValue[0] / inputValue[4] * inputValue[3] / (inputValue[2] > 1 ? inputValue[2]/100 : inputValue[2])) : (resTime = ((inputValue[3] * inputValue[4]) / inputValue[0]) / (inputValue[2] > 1 ? inputValue[2]/100 : inputValue[2]));
+      calcTime(resTime);
+      index === 0 ? input[5].value = res.toFixed(2) : input[5].value = resTime;
     })
   });
 
   function delArr(arr) {
     arr.splice(0, arr.length);
+  }
+
+  function calcTime(par) {
+    return resTime = `${Math.floor(par)}h${Math.floor((par - Math.floor(Number(par))) * 60)}min`;
   }
 }
